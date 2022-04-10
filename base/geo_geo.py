@@ -11,7 +11,8 @@ NOMINATIM_REVERSE_ENDPOINT = f"{NOMINATIM_API_URL}/reverse"
 
 query_params = {
     "addressdetails":1,
-
+    "extratags":1,
+    "accept-language":"en",
 }
 
 
@@ -31,11 +32,21 @@ def fetch_osm_reverse(lat: float, lon: float, zoom: int, params: Dict[str, int])
     return response.json()
 
 
-def random_geo():
+def random_geo(lon,lat):
     """random data from geojson"""
-    lon = round(random.uniform(14.07, 24.09), 6)
-    lat = round(random.uniform(49, 54.50), 6)
+
     data = fetch_osm_reverse(lat=lat, lon=lon, zoom=10, params=query_params)
     #pprint(data)
     #print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++')
     return data
+
+#test for random_geo
+'''
+#random in Poland
+lon = round(random.uniform(14.07, 24.09), 6)
+lat = round(random.uniform(49, 54.50), 6)
+print(random_geo(lon,lat))
+#"WARSAW"
+#lon = 20.967
+#lat = 52.1595
+'''

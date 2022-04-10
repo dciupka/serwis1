@@ -1,0 +1,4 @@
+virtualenv/
+__pycache__/
+*.sqlite3
+*sc.txt
