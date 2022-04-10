@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 with open("sc.txt") as file_object:
     lines = file_object.readlines()
 
-SECRET_KEY = lines
+SECRET_KEY = lines[0]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
