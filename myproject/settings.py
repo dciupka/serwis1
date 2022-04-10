@@ -27,7 +27,7 @@ with open("sc.txt") as file_object:
 SECRET_KEY = lines[0]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_heroku',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Moje ustawienia
+LOGIN_URL='users:login'
 
+# try to load local_settings.py if it exists
+try:
+  from local_settings import *
+except Exception as e:
+  pass
 #ustawieenia heroku
 import django_heroku
 django_heroku.settings(locals())
