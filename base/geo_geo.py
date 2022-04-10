@@ -32,21 +32,28 @@ def fetch_osm_reverse(lat: float, lon: float, zoom: int, params: Dict[str, int])
     return response.json()
 
 
-def random_geo(lon,lat):
+def random_geo():
     """random data from geojson"""
-
-    data = fetch_osm_reverse(lat=lat, lon=lon, zoom=10, params=query_params)
-    #pprint(data)
-    #print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+    while True:
+        lon = round(random.uniform(0.00, 180.00), 6) # 6 dokladnosc
+        lat = round(random.uniform(0.00, 180.00), 6)
+        try:
+            data = fetch_osm_reverse(lat=lat, lon=lon, zoom=10, params=query_params)
+            if not 'display_name'in data or len(data)<=1:
+                continue
+            else:
+                break
+        except:
+            print('fatal error')
+    print(data)
     return data
 
-#test for random_geo
+#print(random_geo())
+
 '''
-#random in Poland
-lon = round(random.uniform(14.07, 24.09), 6)
-lat = round(random.uniform(49, 54.50), 6)
-print(random_geo(lon,lat))
-#"WARSAW"
-#lon = 20.967
-#lat = 52.1595
+
+lon = round(random.uniform(14.07, 24.09), 6) #POLAND
+lat = round(random.uniform(49, 54.50), 6) #POLAND
+ #lon = 20.967  #warsaw
+#lat = 52.1595 #warsaw
 '''
