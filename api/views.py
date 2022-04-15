@@ -16,6 +16,7 @@ def getAllData(request):
     return Response(serializer.data)
 
 
+
 @api_view(['POST'])
 def addData(request):
     serializer= GeoinfoSerializer(data=request.data)
