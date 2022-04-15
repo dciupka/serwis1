@@ -9,6 +9,12 @@ def getData(request,size):
     serializer = GeoinfoSerializer(items, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getAllData(request):
+    items = Geoinfo.objects.all()
+    serializer = GeoinfoSerializer(items, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['POST'])
 def addData(request):
