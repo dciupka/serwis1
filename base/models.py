@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db.models import IntegerField, Model
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class GeoPosition(models.Model):
     latitude = models.FloatField()
@@ -9,8 +10,8 @@ class GeoPosition(models.Model):
         return f'{self.latitude}, {self.longitude}'
 
 
-class Geoinfo(models.Model):
-    list_size = models.IntegerField()
+class Geoinfo(Model):
+    list_size = models.IntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     _type = models.CharField(max_length=200)
     _id = models.IntegerField()
     key = models.BooleanField(null=True)

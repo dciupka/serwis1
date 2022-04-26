@@ -61,7 +61,7 @@ def index(request):
                            coreCountry=random.getrandbits(1),
                            distance=None)
             item.save()
-        return redirect('base:conf')
+        return redirect('api:getdata', size=size)
     context = {'form': form}
     return render(request, 'base/index.html', context)
 
