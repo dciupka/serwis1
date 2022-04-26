@@ -27,7 +27,7 @@ with open("sc.txt") as file_object:
 SECRET_KEY = lines[0]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
